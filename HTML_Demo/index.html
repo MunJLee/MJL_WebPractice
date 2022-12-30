@@ -1,0 +1,177 @@
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+
+        <meta name="description" content="CS641 Homework_01">
+        <meta name="keywords" content="HTML,CSS, JavaScript">
+        <meta name="author" content="Mun Jeong Lee">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Party Food!!</title>
+
+        <style>
+
+            * { 
+            box-sizing: border-box; 
+            font-family: "Arial", san-serif;
+            }
+
+
+            body {
+            width: 98%;
+            margin: auto;
+            background-color: #454140;
+            }
+
+
+            header { 
+            height: 10%;
+            line-height: 10%;
+            margin: auto;
+            padding: 10 0;
+            text-align: center; 
+            background: linear-gradient(to right, #fa7a35 50%, #DD4132 100%);     
+            border: #DD4132 solid;
+            }
+
+
+            section { margin: 5 0 0 0;}
+
+
+            aside { 
+            float: left;
+            width: 23.5%;
+            margin: 0 0.2% 0 0;
+            padding: 1%;
+            background-color: #a79e84;
+            border: thin #DD4132 solid;
+            font-size: 130%;
+            box-shadow: 3px 3px 1px #fa7a35;
+            }
+
+            article {
+            float: left;
+            width: 76%;
+            background-color: #587e76;
+            margin: 0 0 0 0.2%;
+            }
+
+
+            #div_vid button {
+            display: block;
+            height: 5%;
+            margin: auto;
+            }
+
+
+            video { 
+            display: none; 
+            width: 100%;
+            padding: 5 0;
+            }
+
+
+            #div_gallery table { border: thin #DD4132 solid; }
+
+
+            img { width: 100%; }
+
+
+        </style>
+
+    </head>
+
+
+    <body>
+        
+        <header>
+
+            <h1>Party Foods at My House, 2021</h1>
+
+        </header>
+
+        <section>
+
+            <aside> 
+                <div id=div_desc>
+
+                <p>Here I present the photos of party foods in year 2021.</p>
+
+                <p>For most of family events last year, we still had to be careful and there were nothing much outside either.</p>
+
+                <p><i>FUN FACT</i>: We have a family member who would not eat anything other than beef for the terrestrial animals. (-_- ;)</p>
+
+                <h3>Party Days in My House:</h3>
+
+                <ul>
+                    <li>Everybody's Birthdays</li>
+                    <li>New Year's Day</li>
+                    <li>Mother's Day</li>
+                    <li>July 4th</li>
+                    <li>Thanksgiving Day</li>
+                    <li>Christmas <s>Festivus</s></li>
+                </ul>
+
+                </div>
+
+                <div id=div_vid>
+
+                    <button type="button" onclick="videoReveal()">VIDEO EXTRA</button>
+                    
+
+                    <video id=vid_extra controls>
+                        <source src="videos/HouseCat.mp4" type="video/mp4">
+                        ERROR:VIDEO FAILED TO LOAD
+                    </video>
+
+                </div>                            
+
+
+            </aside>
+
+            <article>
+
+                <div id=div_gallery>
+
+                    <table>
+
+                        <tr>
+                            <td><img src="images/party_01.jpg" title="Christmas Salmon"></td>
+                            <td><img src="images/party_02.jpg" title="Birthday Seafood Set"></td>
+                        </tr>
+    
+                        <tr>
+                            <td><img src="images/party_03.jpg" title="Hotpot Party" ></td>
+                            <td><img src="images/party_04.jpg" title="Summer BBQ" ></td>
+                        </tr>
+
+    
+                        <tr>
+                            <td><img src="images/party_05.jpg" title="Birthday Set #2" ></td>
+                            <td><img src="images/party_06.jpg" title="Unagi-don Dinner" ></td>
+                        </tr>
+    
+                    </table>
+
+                </div>
+
+
+            </article>
+
+        </section>
+
+        <script>
+
+            function videoReveal(){
+                var videoToggle = document.getElementById("vid_extra");
+                
+                if(videoToggle.style.display !== "block"){ videoToggle.style.display = "block"; }
+                else {videoToggle.style.display = "none"; }
+            }
+
+        </script>
+
+    </body>
+
+</html>
