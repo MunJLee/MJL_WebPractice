@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>RestApi Flask Demo Testpage</title>
+  </head>
+  <body>
+    <h3>Please press the following buttons to make a restapi call</h3>
+    <div id="ar">
+      <h5>Retrieve all records:</h5>
+      <form id="allRecords" action="/members" method="get" target="_blank">
+        <input type="submit" value="GET">
+      </form>
+      <br>
+    </div>
+    <div id="sr">
+      <h5>Retrieve a single records (id=3):</h5>
+      <form id="singleRecord" action="/members/3" method="get" target="_blank">
+        <input type="submit" value="GET">
+      </form>
+      <br>
+    </div>
+    <div id="ae">
+      <h5>Retrieve all entries (id=5, overdue):</h5>
+      <form id="allEntries" action="/members/5/overdue" method="get" target="_blank">
+        <input type="submit" value="GET">
+      </form>
+      <br>
+    </div>
+    <div id="se">
+      <h5>Retrieve a single entry (id=5, overdue entry=1):</h5>
+      <form id="singleEntry" action="/members/5/overdue/1" method="get" target="_blank">
+        <input type="submit" value="GET">
+      </form>
+      <br>
+    </div>
+  </body>
+</html>
