@@ -1,0 +1,160 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="description" content="CS641 Homework_05">
+    <meta name="keywords" content="HTML, JavaScript">
+    <meta name="author" content="Mun Jeong Lee">
+
+</head>
+
+<body>
+    <canvas id="you_draw_here" style="background-color:rgba(241,225,208,255)"></canvas>
+</body>
+
+
+<script>
+
+    var canvasSetup = document.getElementById("you_draw_here");
+
+    canvasSetup.width = window.innerWidth;
+    canvasSetup.height = window.innerHeight;
+
+    var cvs = canvasSetup.getContext("2d");
+
+    var amplitude = 55; 
+    var frequency = 180; 
+    var fOffset = 0; //frequency offset
+
+    op_art(cvs);
+
+
+    //Draws a single section of lines
+    function draw_cosine_wave(ctx, y_start, xOffset)
+    {
+        var width = ctx.canvas.width;
+        
+        ctx.beginPath();
+
+        //line 01
+        var x1 = 0;
+        var y1 = 0;
+
+        while (x1 < width)
+        {
+            y1 = y_start + amplitude * Math.cos((x1+20+xOffset)/(frequency-fOffset));
+            ctx.lineTo(x1, y1);
+            x1++;
+        }
+
+        ctx.lineWidth = 25;
+        ctx.strokeStyle = 'rgb(204,58,27, 1)'
+        ctx.stroke();
+
+        
+        //line 02
+        ctx.beginPath();
+
+        var y_alter_start = y_start + 18;
+
+        var x2 = 0;
+        var y2 = y_alter_start + amplitude * Math.cos((x2+xOffset)/(frequency-fOffset));
+
+        ctx.moveTo(0,y2);
+
+        while (x2 < width)
+        {
+            y2 = y_alter_start + amplitude * Math.cos((x2+xOffset)/(frequency-fOffset));
+            ctx.lineTo(x2, y2);
+            x2++;
+        }
+
+        ctx.lineWidth = 20;
+        ctx.strokeStyle = 'rgb(33,84,98, 1)';
+        ctx.stroke();
+
+    }
+
+
+    //Draws the screen
+    function op_art(ctx)
+    {
+        var height = ctx.canvas.height;
+        var startPoint = height/32;
+
+        //clean the canvas here
+        ctx.clearRect(0, 0, ctx.canvas.width, height);
+        
+
+        //draw lines
+        for(let i=0; i < 32; i++)
+        {
+            currentPoint = startPoint + (70 * i);
+            if (currentPoint >= height){ break;}
+
+            waveShift = (-80 * i);
+
+            draw_cosine_wave(ctx, currentPoint, waveShift);
+        }
+
+        //animation
+        requestAnimationFrame(op_art);
+    }
+
+
+    //To make the canvas responsive
+    window.addEventListener('resize', function(){
+
+        canvasSetup.width = window.innerWidth;
+        canvasSetup.height = window.innerHeight;
+
+        op_art(cvs); 
+
+        //scaling here?
+    });
+
+
+    //for android//
+    window.addEventListener("devicemotion", function(e){
+        canvasActionWhenShakenSideways(e);
+    });
+
+
+    //for iOS: asks device permission//
+    DeviceMotionEvent.requestPermission().then(response => {
+        if (response == 'granted') {
+            window.addEventListener('devicemotion', (e) => {  
+                canvasActionWhenShakenSideways(e);            
+            })
+        }
+    })
+    .catch(console.error)
+
+
+    function canvasActionWhenShakenSideways(event)
+    {
+        x_coordinate = event.acceleration.x; //right-left//
+        fOffset = Math.trunc(x_coordinate) * 10;
+
+        //increasing motion//
+        for(let i=0; i < 2; i++)
+        {
+            op_art(cvs);
+            fOffset = fOffset * 2;
+        }
+
+        //decreasing motion//
+        for(let i=0; i < 2; i++)
+        {
+            op_art(cvs);
+            fOffset = fOffset / 2;
+        }
+
+        //rest motion
+        op_art(cvs);
+        fOffset = 0;
+    }
+
+</script>
+
+</html>
