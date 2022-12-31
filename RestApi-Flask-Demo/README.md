@@ -1,4 +1,4 @@
-# CS612_N5 Release Note
+# PUCS612_N5 Release Note
 This is a simple Python Flask RestApi web service exhibition project.
 
 ### How to Run
